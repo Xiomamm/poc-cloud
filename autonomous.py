@@ -95,7 +95,7 @@ def create_table(dbconnection):
 def load_data(input_csv_text, dbconnection):
     try:
         reader = csv.DictReader(input_csv_text.split('\n'), delimiter=',')
-        info_db = [(line['ID'], line['DOC'], line['APELLIDO'], line['EDAD'], line['GENERO'], line['ESTADO_CIVIL'], line['OCUPACION'], line['DIRECCION'], line['LICENCIA_CONDUCCION'], line['F_EMISION'], line['CATEGORIA'], line['ANTECEDENTES'], line['ID_ANTECEDENTES'], line['MULTAS'], line['ID_MULTAS'], line['SALDO'], line['RECLAMACIONES']) for line in reader]
+        info_db = [(line['DOC'], line['NOMBRE'], line['APELLIDO'], line['EDAD'], line['GENERO'], line['ESTADO_CIVIL'], line['OCUPACION'], line['DIRECCION'], line['LICENCIA_CONDUCCION'], line['F_EMISION'], line['CATEGORIA'], line['ANTECEDENTES'], line['ID_ANTECEDENTES'], line['MULTAS'], line['ID_MULTAS'], line['SALDO'], line['RECLAMACIONES']) for line in reader]
 
         with dbconnection.cursor() as dbcursor:        
             logging.getLogger().info("Inserting .....")
