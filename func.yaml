@@ -11,7 +11,7 @@ config:
   TOPIC_OCID: ocid1.onstopic.oc1.iad.aaaaaaaaiz4nefbssb464274dlfl3foidea6m6wmzbkaevng7g55rpryvzeq
   ADB_OCID: ocid1.autonomousdatabase.oc1.iad.anuwcljtubxcthia25bnvb76s43g7ufndhbzj24lo74llglkiodovmbdtruq
   COMPANY: Seguros de los Alpes
-  DBPWD: #Mesmayo2023#
+  DBPWD: ClavE.012356,
   DBSVC: segurosdb_high
   DBUSER: ADMIN
   TNS_ADMIN: /tmp/dbwallet
