@@ -1,5 +1,5 @@
 schema_version: 20180708
-name: apptest
+name: ValidacionCentrales
 version: 0.0.113
 runtime: python
 build_image: fnproject/python:3.9-dev
