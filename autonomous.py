@@ -67,8 +67,8 @@ def create_table(dbconnection):
                             end if;
                         end;""")
             dbcursor.execute("""CREATE TABLE DATOS_CLIENTE (
-                        DOCUMENTO varchar2(2000) not null,
-                        NOMBRE varchar2(500),
+                        DOCUMENTO varchar2(500),
+                        NOMBRE varchar2(2000),
                         APELLIDO varchar2(2000),
                         EDAD number(15),
                         ESTADO_CIVIL varchar2(2000),
