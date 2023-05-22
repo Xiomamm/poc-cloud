@@ -100,7 +100,7 @@ def load_data(input_csv_text, dbconnection):
         with dbconnection.cursor() as dbcursor:        
             logging.getLogger().info("Inserting .....")
 
-            dbcursor.executemany("INSERT INTO LOAD_TABLE VALUES (:1, :2, :3, :4, :5, :6, :7, :8, :9, :10, :11, :12, :13, :14, :15, :16, :17)", info_db, batcherrors=True)
+            dbcursor.executemany("INSERT INTO DATOS_CLIENTE VALUES (:1, :2, :3, :4, :5, :6, :7, :8, :9, :10, :11, :12, :13, :14, :15, :16, :17)", info_db, batcherrors=True)
             dbconnection.commit()
             for error in dbcursor.getbatcherrors():                    
                 logging.getLogger().error(error.message)
