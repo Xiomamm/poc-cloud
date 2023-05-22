@@ -60,17 +60,30 @@ def create_table(dbconnection):
             out_val = dbcursor.var(str)
 
             dbcursor.execute("""begin
-                            execute immediate 'DROP TABLE LOAD_TABLE';
+                            execute immediate 'DROP TABLE DATOS_CLIENTE';
                             exception when others then
                             if sqlcode <> -942 then
                                 raise;
                             end if;
                         end;""")
-            dbcursor.execute("""CREATE TABLE LOAD_TABLE (
-                        ID number(9) not null,
-                        NAME varchar2(500),
-                        LAST_NAME varchar2(2000),
-                        constraint TestTempTable_pk primary key (ID))""")
+            dbcursor.execute("""CREATE TABLE DATOS_CLIENTE (
+                        DOCUMENTO number(15) not null,
+                        NOMBRE varchar2(500),
+                        APELLIDO varchar2(2000),
+                        EDAD number(15),
+                        ESTADO_CIVIL varchar2(2000),
+                        OCUPACION varchar2(2000),
+                        DIRECCION varchar2(2000),
+                        LICENCIA_CONDUCCION varchar2(2000),
+                        F_EMISION varchar2(2000),
+                        CATEGORIA varchar2(2000),
+                        ANTECEDENTES varchar2(2000),
+                        ID_ANTECEDENTES varchar2(2000),
+                        MULTAS varchar2(2000),
+                        ID_MULTAS varchar2(2000),
+                        SALDO varchar2(2000),
+                        RECLAMACIONES varchar2(2000),
+                        constraint TestTempTable_pk primary key (DOCUMENTO))""")
 
             end_query = timer()  
             logging.getLogger().info("Outcome creation table " + out_val.getvalue())
@@ -82,12 +95,12 @@ def create_table(dbconnection):
 def load_data(input_csv_text, dbconnection):
     try:
         reader = csv.DictReader(input_csv_text.split('\n'), delimiter=',')
-        info_db = [(line['ID'], line['NAME'], line['LAST_NAME']) for line in reader]
+        info_db = [(line['DOCUMENTO'], line['NOMBRE'], line['APELLIDO'], line['EDAD'], line['ESTADO_CIVIL'], line['OCUPACION'], line['DIRECCION'], line['LICENCIA_CONDUCCION'], line['F_EMISION'], line['CATEGORIA'], line['ANTECEDENTES'], line['ID_ANTECEDENTES'], line['MULTAS'], line['SALDO'], line['RECLAMACIONES']) for line in reader]
 
         with dbconnection.cursor() as dbcursor:        
             logging.getLogger().info("Inserting .....")
 
-            dbcursor.executemany("INSERT INTO LOAD_TABLE VALUES (:1, :2, :3)", info_db, batcherrors=True)
+            dbcursor.executemany("INSERT INTO LOAD_TABLE VALUES (:1, :2, :3, :4, :5, :6, :7, :8, :9, :10, :11, :12, :13, :14, :15, :16, :17,)", info_db, batcherrors=True)
             dbconnection.commit()
             for error in dbcursor.getbatcherrors():                    
                 logging.getLogger().error(error.message)
