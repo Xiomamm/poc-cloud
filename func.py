@@ -58,7 +58,7 @@ def do(signer, body):
             logging.getLogger().info("CARGA DE DATOS COMPLETA")
  
         else:
-            raise SystemExit("EXTENSION DEL ARCHIVO NO SOPORTADA)    
+            raise SystemExit("EXTENSION DEL ARCHIVO NO SOPORTADA")    
             
     except Exception as e:
         logging.getLogger().error("Failed:" + str(e))
