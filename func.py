@@ -50,15 +50,15 @@ def do(signer, body):
             companyName = os.getenv('COMPANY')
             topicId = os.getenv('TOPIC_OCID')
             messageDetails = oci.ons.models.MessageDetails(
-                body="Load process complete", title="Racing to the cloud :: " + companyName)
+                body="CARGA DE DATOS COMPLETA", title="DATOS DE CLIENTE ACTUALIZADOS :: " + companyName)
 
             ons_client = oci.ons.NotificationDataPlaneClient(config={}, signer=signer)
             ons_client.publish_message(topicId,messageDetails) 
 
-            logging.getLogger().info("Load process complete")
+            logging.getLogger().info("CARGA DE DATOS COMPLETA")
  
         else:
-            raise SystemExit("File extension is not supported")    
+            raise SystemExit("EXTENSION DEL ARCHIVO NO SOPORTADA)    
             
     except Exception as e:
         logging.getLogger().error("Failed:" + str(e))
