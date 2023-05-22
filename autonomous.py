@@ -66,7 +66,7 @@ def create_table(dbconnection):
                             end if;
                         end;""")
             dbcursor.execute("""CREATE TABLE DATOS_CLIENTE (
-                        ID number(9) not null,
+                        DOC number(9) not null,
                         NOMBRE varchar2(2000),
                         APELLIDO varchar2(2000),
                         EDAD number(15),
@@ -83,7 +83,7 @@ def create_table(dbconnection):
                         ID_MULTAS varchar2(2000),
                         SALDO varchar2(2000),
                         RECLAMACIONES varchar2(2000),
-                        constraint TestTempTable_pk primary key (ID))""")
+                        constraint TestTempTable_pk primary key (DOC))""")
 
             end_query = timer()  
             logging.getLogger().info("Outcome creation table " + out_val.getvalue())
@@ -95,7 +95,7 @@ def create_table(dbconnection):
 def load_data(input_csv_text, dbconnection):
     try:
         reader = csv.DictReader(input_csv_text.split('\n'), delimiter=',')
-        info_db = [(line['ID'], line['NOMBRE'], line['APELLIDO'], line['EDAD'], line['GENERO'], line['ESTADO_CIVIL'], line['OCUPACION'], line['DIRECCION'], line['LICENCIA_CONDUCCION'], line['F_EMISION'], line['CATEGORIA'], line['ANTECEDENTES'], line['ID_ANTECEDENTES'], line['MULTAS'], line['ID_MULTAS'], line['SALDO'], line['RECLAMACIONES']) for line in reader]
+        info_db = [(line['ID'], line['DOC'], line['APELLIDO'], line['EDAD'], line['GENERO'], line['ESTADO_CIVIL'], line['OCUPACION'], line['DIRECCION'], line['LICENCIA_CONDUCCION'], line['F_EMISION'], line['CATEGORIA'], line['ANTECEDENTES'], line['ID_ANTECEDENTES'], line['MULTAS'], line['ID_MULTAS'], line['SALDO'], line['RECLAMACIONES']) for line in reader]
 
         with dbconnection.cursor() as dbcursor:        
             logging.getLogger().info("Inserting .....")
